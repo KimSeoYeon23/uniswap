@@ -1,3 +1,32 @@
 {
-  "extends": "next/core-web-vitals"
+  // ESLint가 소스 코드를 파싱하기 위해 사용하는 파서를 지정
+  // "@typescript-eslint/parser"는 TypeScript 코드를 파싱하기 위한 파서
+  // 이 파서를 사용함으로써 ESLint는 TypeScript의 특징들(예: 타입, 인터페이스 등)을 정확히 이해하고 검사할 수 있다.
+  "parser": "@typescript-eslint/parser",
+
+  // extends는 기존 ESLint 설정을 확장하거나 재사용하게 한다.
+  "extends": [
+    // "next/core-web-vitals"는 Next.js가 제공하는 Core Web Vitals 관련 규칙 세트를 의미한다.
+    // Core Web Vitals는 웹 페이지의 사용자 경험을 측정하는 지표들을 의미하며, Google에서 중요시하는 성능 지표들이다. 
+    // 이 설정을 확장하면, 코드에서 Core Web Vitals에 부정적인 영향을 미칠 수 있는 패턴을 자동으로 감지하고 경고 또는 오류로 표시할 수 있다.
+    "next/core-web-vitals",
+    "eslint:recommended",                     // ESLint에서 기본적으로 추천하는 규칙 세트를 포함한다.
+    "plugin:@typescript-eslint/recommended",  // TypeScript와 관련된 규칙들을 포함한다. @typescript-eslint 플러그인에서 제공된다.
+    "plugin:react/recommended"                // React와 JSX와 관련된 기본 규칙들을 포함한다.
+  ],
+  // ESLint에 추가적인 규칙 또는 기능을 제공하는 플러그인들의 목록
+  "plugins": [
+    "@typescript-eslint",   // TypeScript와 관련된 규칙과 기능을 제공
+    "react"                 // React와 JSX와 관련된 규칙과 기능을 제공
+  ],
+  // 특정 규칙을 사용자 정의하거나 덮어쓰기 위한 설정
+  "rules": {
+    "react/react-in-jsx-scope": "off"   // React 17이후 JSX를 사용할 때 `import React from 'react'`가 더 이상 필요하지 않다. 이 규칙을 끔으로써 해당 경고나 오류를 방지한다.
+  },
+  // ESLint가 사용하는 환경을 지정
+  // 환경은 글로벌 변수나 특정 문법을 포함할 수 있다.
+  "env": {
+    "browser": true,      // 브라우저 환경에서 사용되는 전역 변수와 설정을 포함
+    "node": true          // Node.js 환경에서 사용되는 전역 변수와 설정을 포함
+  }
 }
